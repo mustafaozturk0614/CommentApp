@@ -2,6 +2,7 @@ package com.bilgeadam.commentapp.controller;
 
 import com.bilgeadam.commentapp.repository.IProductRepository;
 import com.bilgeadam.commentapp.repository.entity.Product;
+import com.bilgeadam.commentapp.repository.entity.ProductComment;
 import com.bilgeadam.commentapp.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -91,6 +92,8 @@ public  ResponseEntity<List<Product>> findAll(){
 
         return  productService.findAllOptionalByExpirationDateBetween();
     }
+
+
 }
 
 

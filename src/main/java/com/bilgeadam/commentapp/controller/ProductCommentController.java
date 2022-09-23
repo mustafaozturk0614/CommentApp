@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -36,6 +37,41 @@ public class ProductCommentController {
 
         return ResponseEntity.ok(productCommentService.findAll());
     }
+    @GetMapping("/findbyproductid")
+    public ResponseEntity<List<ProductComment>> findAllOptionalByProductId(Long productId){
+        return ResponseEntity.ok(productCommentService.findAllOptionalByProductId(productId).get());
+    }
+    @GetMapping("/findbyproductidanddate")
+    public    ResponseEntity<List<ProductComment>> findAllOptionalByProductIdAndCommentDateBetween(Long productId, String dateOne, String dateTwo){
+        return ResponseEntity.ok( productCommentService.findAllOptionalByProductIdAndCommentDateBetween
+                (productId,LocalDate.parse(dateOne),LocalDate.parse(dateTwo)).get());
+    }
 
-   
+
+    @GetMapping("/findbyuserid")
+    public   ResponseEntity<List<ProductComment>> findAllOptionalByUserId(Long userId){
+
+        return ResponseEntity.ok(productCommentService.findAllOptionalByUserId(userId).get());
+    }
+
+    @GetMapping("/findbyuseridanddate")
+    public    ResponseEntity<List<ProductComment>> findAllOptionalByUserIdAndCommentDateBetween(Long userId, String dateOne, String dateTwo){
+        return ResponseEntity.ok( productCommentService.findAllByUserIdAndCommentDateBetween(userId,LocalDate.parse(dateOne),LocalDate.parse(dateTwo)).get());
+    }
+    @GetMapping("/commentiscontain")
+    public ResponseEntity<List<ProductComment>> findAllOptionalByCommentContaining(String value){
+
+        return ResponseEntity.ok(productCommentService.findAllOptionalByCommentContaining(value).get()) ;
+    }
+    @GetMapping("/findbycommentlength")
+    public   ResponseEntity<List<ProductComment>> findByCommnetLength(int value){
+
+        return ResponseEntity.ok(productCommentService.findByCommnetLength(value).get());
+    }
+
+    @GetMapping("/cokguzel")
+    public ResponseEntity<List<ProductComment>> findAllOptionalByCommentContainingCokGuzel(){
+
+        return ResponseEntity.ok(productCommentService.findByCommnetContainCokGuzel().get()) ;
+    }
 }
