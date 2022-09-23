@@ -2,7 +2,6 @@ package com.bilgeadam.commentapp.controller;
 
 import com.bilgeadam.commentapp.repository.entity.ProductComment;
 import com.bilgeadam.commentapp.service.ProductCommentService;
-import com.bilgeadam.commentapp.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,5 +37,5 @@ public class ProductCommentController {
         return ResponseEntity.ok(productCommentService.findAll());
     }
 
-
+   
 }

@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -37,9 +39,58 @@ public  ResponseEntity<List<Product>> findAll(){
     return  ResponseEntity.ok(productService.findAll());
 }
 
+    @GetMapping("/findpricegt")
+    public    Optional<List<Product>> findAllOptionalByPriceGreaterThan(Double price){
+
+        return productService.findAllOptionalByPriceGreaterThan(price);
+
+    }
+    @GetMapping("/findexpirationdatebefore")
+    public    Optional<List<Product>> findAllOptionalByExpirationDateBefore(){
+        LocalDate date=LocalDate.now();
+        return productService.findAllOptionalByExpirationDateBefore(date);
+
+    }
+    @GetMapping("/searchbyprice")
+    public  Optional< Object[]>  searchProductByPrice(){
+
+        return  productService.searchProductByPrice();
+    }
 
 
+    @GetMapping("/findexpirationdateafterornull")
+    public Optional<List<Product>> findAllOptionalByExpirationDateAfterOrExpirationDateIsNull(){
+        LocalDate date=LocalDate.now();
+        return  productService.findAllOptionalByExpirationDateAfterOrExpirationDateIsNull(date);
+    }
 
+    @GetMapping("/countbyexpirationdate")
+    public  int countAllByExpirationDate(String date){
+
+        return  productService.countAllByExpirationDate(LocalDate.parse(date));
+    }
+
+    @GetMapping("/findbyprices")
+    public Optional<List<Product>> findAllOptionalByPriceIn(){
+        List<Double> prices=new ArrayList<>();
+
+        prices.add(50D);
+        prices.add(700D);
+
+        return  productService.findAllOptionalByPriceIn(prices);
+    }
+    @GetMapping("/findbynames")
+    public Optional<List<Product>> findAllOptionalByNameIn(){
+        List<String> productNames=new ArrayList<>();
+        productNames.add("yeni");
+        productNames.add("yeni2");
+        return  productService.findAllOptionalByNameIn(productNames);
+    }
+    @GetMapping("/discountbydate")
+    public List<Product> findAllOptionalByExpirationDateBetween(){
+
+        return  productService.findAllOptionalByExpirationDateBetween();
+    }
 }
 
 

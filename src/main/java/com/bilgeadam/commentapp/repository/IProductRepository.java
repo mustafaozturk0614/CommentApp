@@ -33,4 +33,5 @@ public interface IProductRepository extends JpaRepository<Product,Long > {
 
     Optional<List<Product>> findAllOptionalByNameIn(List<String> productNames);
 
+    Optional<List<Product>> findAllOptionalByExpirationDateBetween(LocalDate now,LocalDate nextDate);
 }
