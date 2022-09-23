@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -59,5 +60,38 @@ public class ProductCommentService {
 
     public  Optional<List<ProductComment>> findByCommnetContainCokGuzel(){
         return productCommentRepository.findByCommnetContainCokGuzel();
+    }
+
+
+    public List<ProductComment> findbyList(){
+        List<String> list=new ArrayList<>();
+        list.add("çok güzel");
+        list.add("iyi");
+        list.add("berbat");
+
+        List<ProductComment> productComments=productCommentRepository.findAll().stream().filter(x-> {
+            for (int i = 0; i < list.size(); i++) {
+                if (x.getComment().contains(list.get(i))){
+                    return  true;
+                }
+            }
+            return false;
+        }).collect(Collectors.toList());
+
+        return productComments;
+    }
+
+    public List<ProductComment> findbyList(String [] array){
+
+        List<ProductComment> productComments=productCommentRepository.findAll().stream().filter(x-> {
+            for (int i = 0; i < array.length; i++) {
+                if (x.getComment().contains(array[i])){
+                    return  true;
+                }
+            }
+            return false;
+        }).collect(Collectors.toList());
+
+        return productComments;
     }
 }

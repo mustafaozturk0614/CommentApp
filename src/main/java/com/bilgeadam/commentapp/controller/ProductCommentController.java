@@ -12,6 +12,12 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ *
+ *bir listenin içindeki her bir elaman commentin içinde geçiyormu
+ *güzel ,iyi, çok iyi
+ *
+ */
 
 @RestController
 @RequiredArgsConstructor
@@ -73,5 +79,17 @@ public class ProductCommentController {
     public ResponseEntity<List<ProductComment>> findAllOptionalByCommentContainingCokGuzel(){
 
         return ResponseEntity.ok(productCommentService.findByCommnetContainCokGuzel().get()) ;
+    }
+
+    @GetMapping("/findbylist")
+    public  ResponseEntity<List<ProductComment>> findBylist(){
+
+        return ResponseEntity.ok(productCommentService.findbyList()) ;
+    }
+
+    @GetMapping("/findbylist2")
+    public  ResponseEntity<List<ProductComment>> findBylist(String [] array){
+
+        return ResponseEntity.ok(productCommentService.findbyList(array)) ;
     }
 }
