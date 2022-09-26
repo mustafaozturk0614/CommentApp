@@ -75,4 +75,19 @@ public List<Product> findAllOptionalByExpirationDateBetween(){
 
 }
 
+    public Optional<Product> findById(Long productId) {
+      Optional<Product> product= productRepository.findById(productId);
+      if (product.isPresent()){
+
+          return  product;
+      }
+        System.out.println("Ürün bulunamadý");
+      return Optional.ofNullable(null);
+
+    }
+
+    public List<Product> saveAll(List<Product> products) {
+
+    return productRepository.saveAll(products);
+    }
 }

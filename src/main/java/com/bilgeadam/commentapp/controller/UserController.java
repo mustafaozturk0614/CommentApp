@@ -77,4 +77,11 @@ public ResponseEntity<List<User>> findAllUserByOrderByName(){
 
         return ResponseEntity.ok(userService.controlPasswordlength2(value));
     }
+
+
+    @GetMapping("/addfav")
+    public ResponseEntity<Optional<User>> addFav(Long userId,Long productId){
+
+        return ResponseEntity.ok( userService.addFav(userId,productId));
+    }
 }

@@ -6,7 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
+/*
+* favProductlar ekleyelim bunlarý id bazýnda tutacaðýz
+* /* user ýd ve product ýd ile favaorulere urun ekleyen bir metot yazalým bunun da end pointini yazalým
+*
+* */
 @Entity
 @Table(name = "tbl_user")
 @AllArgsConstructor
@@ -27,4 +33,7 @@ public class User {
     private String telephone;
     @Column(length = 32)
     private String password;
+    @ElementCollection
+    List<Long> favProducts;
+
 }

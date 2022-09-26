@@ -94,4 +94,9 @@ public class ProductCommentService {
 
         return productComments;
     }
+
+    public List<ProductComment> saveAll(List<ProductComment> productComments) {
+
+        return productCommentRepository.saveAll(productComments);
+    }
 }

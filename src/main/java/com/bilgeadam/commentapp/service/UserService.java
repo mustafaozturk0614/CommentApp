@@ -1,10 +1,9 @@
 package com.bilgeadam.commentapp.service;
 
 import com.bilgeadam.commentapp.repository.IUserRepository;
+import com.bilgeadam.commentapp.repository.entity.Product;
 import com.bilgeadam.commentapp.repository.entity.User;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +14,8 @@ import java.util.Optional;
 public class UserService {
     @Autowired
   private   IUserRepository userRepository;
+    @Autowired
+    private  ProductService productService;
 
   public  User save(User user){
       return userRepository.save(user);
@@ -65,4 +66,21 @@ public class UserService {
         return userRepository.controlPasswordlength2(value);
     }
 
+    public Optional<User> addFav(Long userId, Long productId) {
+      Optional<User> user= userRepository.findById(userId);
+      Optional<Product> product= productService.findById(productId);
+
+      if (user.isPresent()&&product.isPresent()){
+          user.get().getFavProducts().add(productId);
+         return Optional.of(userRepository.save(user.get()));
+      }
+        System.out.println("ürün eklenemedi");
+      return  Optional.ofNullable(null);
+
+    }
+
+    public List<User> saveAll(List<User> users) {
+
+    return userRepository.saveAll(users);
+    }
 }
