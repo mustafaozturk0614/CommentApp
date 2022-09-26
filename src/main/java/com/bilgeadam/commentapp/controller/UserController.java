@@ -1,5 +1,6 @@
 package com.bilgeadam.commentapp.controller;
 
+import com.bilgeadam.commentapp.dto.response.UserCreateResponseDto;
 import com.bilgeadam.commentapp.repository.IUserRepository;
 import com.bilgeadam.commentapp.repository.entity.User;
 import com.bilgeadam.commentapp.service.UserService;
@@ -12,6 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 1-UserFindAllResponseDto==>>
+ * sadece id ve password dönmeyecek burda UserCreateResponsedto ya ek olarak fav listeside dönülecek
+ * Buna uygun mapperde metoto yazılıp controlerda bir endpoint yazalım findalldto gibi
+ * 2- ProductCreateResponseDto idsini ve likelerini donmesin
+ * buna uygun mapperımızı yazalım ve saveproductdto metodumuzuda controllerda yazalım
+ *
+ *
+ */
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -28,6 +38,26 @@ public ResponseEntity<User> save(String name , String surName, String email,Stri
     return ResponseEntity.ok(user);
 
 }
+
+    @GetMapping("/savedto")
+    public ResponseEntity<UserCreateResponseDto> saveDto(String name , String surName, String email,String telephone,String password){
+        UserCreateResponseDto user=userService.saveDto(User.builder().name(name).surName(surName).
+                telephone(telephone).email(email).password(password).build());
+
+
+        return ResponseEntity.ok(user);
+
+    }
+
+    @GetMapping("/savedto2")
+    public ResponseEntity<UserCreateResponseDto> saveDto2(String name , String surName, String email,String telephone,String password){
+        UserCreateResponseDto user=userService.saveDto2(User.builder().name(name).surName(surName).
+                telephone(telephone).email(email).password(password).build());
+
+
+        return ResponseEntity.ok(user);
+
+    }
 
 @GetMapping ("/findAll")
  public ResponseEntity<List<User>> findAll(){

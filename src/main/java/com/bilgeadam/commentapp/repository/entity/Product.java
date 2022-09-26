@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Locale;
 
 @Table(name = "tbl_product")
@@ -17,12 +18,13 @@ import java.util.Locale;
 @NoArgsConstructor
 public class Product {
 
-@Id
+    @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private  double price;
     private LocalDate expirationDate;
-
+    @ElementCollection
+    private List<Long> likes;
 
 }

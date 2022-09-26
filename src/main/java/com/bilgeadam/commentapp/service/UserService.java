@@ -1,5 +1,7 @@
 package com.bilgeadam.commentapp.service;
 
+import com.bilgeadam.commentapp.dto.response.UserCreateResponseDto;
+import com.bilgeadam.commentapp.mapper.UserMapper;
 import com.bilgeadam.commentapp.repository.IUserRepository;
 import com.bilgeadam.commentapp.repository.entity.Product;
 import com.bilgeadam.commentapp.repository.entity.User;
@@ -74,7 +76,7 @@ public class UserService {
           user.get().getFavProducts().add(productId);
          return Optional.of(userRepository.save(user.get()));
       }
-        System.out.println("ürün eklenemedi");
+        System.out.println("Urun eklenemedi");
       return  Optional.ofNullable(null);
 
     }
@@ -83,4 +85,23 @@ public class UserService {
 
     return userRepository.saveAll(users);
     }
+
+  public Optional<User> findById(Long userId) {
+
+    return  userRepository.findById(userId);
+  }
+
+  public UserCreateResponseDto saveDto(User user) {
+
+    userRepository.save(user);
+    return  UserCreateResponseDto.builder().name(user.getName()).email(user.getEmail())
+            .telephone(user.getTelephone()).surName(user.getSurName()).build();
+
+
+  }
+
+  public UserCreateResponseDto saveDto2(User user) {
+    userRepository.save(user);
+    return UserMapper.INSTANCE.toUserCreateResponseDto(user);
+  }
 }

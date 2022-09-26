@@ -81,7 +81,7 @@ public List<Product> findAllOptionalByExpirationDateBetween(){
 
           return  product;
       }
-        System.out.println("Ürün bulunamadý");
+        System.out.println("Urun bulunamadi");
       return Optional.ofNullable(null);
 
     }
