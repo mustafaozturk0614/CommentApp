@@ -1,6 +1,7 @@
 package com.bilgeadam.commentapp.controller;
 
 import com.bilgeadam.commentapp.dto.response.UserCreateResponseDto;
+import com.bilgeadam.commentapp.dto.response.UserFindAllResponseDto;
 import com.bilgeadam.commentapp.repository.IUserRepository;
 import com.bilgeadam.commentapp.repository.entity.User;
 import com.bilgeadam.commentapp.service.UserService;
@@ -64,6 +65,11 @@ public ResponseEntity<User> save(String name , String surName, String email,Stri
 
     return ResponseEntity.ok(userService.findAll()) ;
 }
+    @GetMapping ("/findalldto")
+    public ResponseEntity<List<UserFindAllResponseDto>> findAllDto(){
+
+        return ResponseEntity.ok(userService.findAllDto()) ;
+    }
 
 @GetMapping("/orderbyname")
 public ResponseEntity<List<User>> findAllUserByOrderByName(){

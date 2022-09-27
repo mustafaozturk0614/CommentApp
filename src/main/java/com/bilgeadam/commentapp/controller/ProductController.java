@@ -1,5 +1,6 @@
 package com.bilgeadam.commentapp.controller;
 
+import com.bilgeadam.commentapp.dto.response.ProductCreateResponseDto;
 import com.bilgeadam.commentapp.repository.IProductRepository;
 import com.bilgeadam.commentapp.repository.entity.Product;
 import com.bilgeadam.commentapp.repository.entity.ProductComment;
@@ -34,6 +35,18 @@ public ResponseEntity<Product> save(String name, Double price, String expiration
     return  ResponseEntity.ok(productService.save(product));
 
 }
+    @GetMapping("/savedto")
+    public ResponseEntity<ProductCreateResponseDto> saveDto(String name, Double price, String expirationDate){
+        Product product;
+        if (expirationDate!=null){
+            product=  Product.builder().name(name).price(price).expirationDate(LocalDate.parse(expirationDate)).build();
+        }else{
+            product=  Product.builder().name(name).price(price).build();}
+
+        return  ResponseEntity.ok(productService.saveDto(product));
+
+    }
+
 
 @GetMapping("/findAll")
 public  ResponseEntity<List<Product>> findAll(){

@@ -1,6 +1,7 @@
 package com.bilgeadam.commentapp.service;
 
 import com.bilgeadam.commentapp.dto.response.UserCreateResponseDto;
+import com.bilgeadam.commentapp.dto.response.UserFindAllResponseDto;
 import com.bilgeadam.commentapp.mapper.UserMapper;
 import com.bilgeadam.commentapp.repository.IUserRepository;
 import com.bilgeadam.commentapp.repository.entity.Product;
@@ -103,5 +104,12 @@ public class UserService {
   public UserCreateResponseDto saveDto2(User user) {
     userRepository.save(user);
     return UserMapper.INSTANCE.toUserCreateResponseDto(user);
+  }
+
+  public List<UserFindAllResponseDto> findAllDto() {
+
+
+    return UserMapper.INSTANCE.toUserFindAllResponseDto(userRepository.findAll());
+
   }
 }
