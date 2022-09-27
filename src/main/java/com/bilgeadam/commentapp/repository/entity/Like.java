@@ -27,6 +27,7 @@ public class Like {
     private  Long id;
     private  Long userId;
     private  Long productId;
-    private LocalDate likedDate;
+    @Builder.Default
+    private LocalDate likedDate=LocalDate.now();
 
 }

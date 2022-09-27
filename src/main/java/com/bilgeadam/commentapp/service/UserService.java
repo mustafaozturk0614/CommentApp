@@ -1,5 +1,6 @@
 package com.bilgeadam.commentapp.service;
 
+import com.bilgeadam.commentapp.dto.request.UserCreateRequestDto;
 import com.bilgeadam.commentapp.dto.response.UserCreateResponseDto;
 import com.bilgeadam.commentapp.dto.response.UserFindAllResponseDto;
 import com.bilgeadam.commentapp.mapper.UserMapper;
@@ -96,7 +97,7 @@ public class UserService {
 
     userRepository.save(user);
     return  UserCreateResponseDto.builder().name(user.getName()).email(user.getEmail())
-            .telephone(user.getTelephone()).surName(user.getSurName()).build();
+            .surName(user.getSurName()).build();
 
 
   }
@@ -112,4 +113,13 @@ public class UserService {
     return UserMapper.INSTANCE.toUserFindAllResponseDto(userRepository.findAll());
 
   }
+
+    public UserCreateResponseDto saveWithRequestDto(UserCreateRequestDto dto) {
+
+        User user=UserMapper.INSTANCE.toUser(dto);
+
+        userRepository.save(user);
+
+        return  UserMapper.INSTANCE.toUserCreateResponseDto(user);
+    }
 }

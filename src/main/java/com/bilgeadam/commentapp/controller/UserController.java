@@ -1,5 +1,6 @@
 package com.bilgeadam.commentapp.controller;
 
+import com.bilgeadam.commentapp.dto.request.UserCreateRequestDto;
 import com.bilgeadam.commentapp.dto.response.UserCreateResponseDto;
 import com.bilgeadam.commentapp.dto.response.UserFindAllResponseDto;
 import com.bilgeadam.commentapp.repository.IUserRepository;
@@ -39,6 +40,12 @@ public ResponseEntity<User> save(String name , String surName, String email,Stri
     return ResponseEntity.ok(user);
 
 }
+    @GetMapping("/savewithrequest")
+    public ResponseEntity<UserCreateResponseDto> save(UserCreateRequestDto dto){
+
+        return ResponseEntity.ok(userService.saveWithRequestDto(dto));
+
+    }
 
     @GetMapping("/savedto")
     public ResponseEntity<UserCreateResponseDto> saveDto(String name , String surName, String email,String telephone,String password){
