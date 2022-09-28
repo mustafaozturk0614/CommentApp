@@ -15,6 +15,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.ok("Beklenmeyen bir hata oluştu: " + ex.getMessage());
     }
 
+
     @ExceptionHandler(CommentAppManagerException.class)
     @ResponseBody
     public ResponseEntity<ErrorMessage> handleCommentAppManagerException(CommentAppManagerException ex){

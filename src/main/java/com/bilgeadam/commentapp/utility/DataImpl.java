@@ -54,11 +54,11 @@ public class DataImpl {
     public  void createproduct(){
 
         Product product=Product.builder().name("Monster NoteBook").price(15000).build();
-        Product product1=Product.builder().name("S�ta� Ayran").expirationDate(LocalDate.now().plusDays(7)).price(15).build();
-        Product product2=Product.builder().name("P�nar S�t").expirationDate(LocalDate.now().minusDays(10)).price(20).build();
-        Product product3=Product.builder().name("P�nar Salam").expirationDate(LocalDate.now().plusDays(30)).price(25).build();
+        Product product1=Product.builder().name("Sutas Ayran").expirationDate(LocalDate.now().plusDays(7)).price(15).build();
+        Product product2=Product.builder().name("Pinar Sut").expirationDate(LocalDate.now().minusDays(10)).price(20).build();
+        Product product3=Product.builder().name("Pınar Salam").expirationDate(LocalDate.now().plusDays(30)).price(25).build();
         Product product4=Product.builder().name("Cappy Meyve Suyu").expirationDate(LocalDate.now().minusDays(10)).price(15).build();
-        Product product5=Product.builder().name("Conon Ya�zc�").price(700).build();
+        Product product5=Product.builder().name("Conon Yaizci").price(700).build();
         Product product6=Product.builder().name("Logitech klavye").price(420).build();
         Product product7=Product.builder().name("Logitech mouse").price(220).build();
         Product product8=Product.builder().name("Banvit Tavuk").expirationDate(LocalDate.now().plusDays(5)).price(15).build();
@@ -71,15 +71,15 @@ public class DataImpl {
     public  void createproductComment(){
 
         ProductComment pc1=ProductComment.builder().comment("begendim").productId(1L).userId(1L).commentDate(LocalDate.now().minusMonths(3)).build();
-        ProductComment pc2=ProductComment.builder().comment("�ok g�zel bir bilgisayar").productId(1L).userId(2L).commentDate(LocalDate.now().minusMonths(10)).build();
-        ProductComment pc3=ProductComment.builder().comment("fazla be�enmedim idare eder").productId(1L).userId(3L).commentDate(LocalDate.now().minusMonths(1)).build();
-        ProductComment pc4=ProductComment.builder().comment("be�endim").productId(8L).userId(4L).commentDate(LocalDate.now().minusDays(3)).build();
+        ProductComment pc2=ProductComment.builder().comment("cok guzel bir bilgisayar").productId(1L).userId(2L).commentDate(LocalDate.now().minusMonths(10)).build();
+        ProductComment pc3=ProductComment.builder().comment("fazla begenmedim idare eder").productId(1L).userId(3L).commentDate(LocalDate.now().minusMonths(1)).build();
+        ProductComment pc4=ProductComment.builder().comment("begendim").productId(8L).userId(4L).commentDate(LocalDate.now().minusDays(3)).build();
         ProductComment pc5=ProductComment.builder().comment("lezzetli").productId(3L).userId(4L).commentDate(LocalDate.now().minusDays(13)).build();
         ProductComment pc6=ProductComment.builder().comment("lezzetli").productId(4L).userId(5L).commentDate(LocalDate.now().minusDays(1)).build();
         ProductComment pc7=ProductComment.builder().comment("idare eder").productId(5L).userId(5L).commentDate(LocalDate.now().minusDays(13)).build();
-        ProductComment pc8=ProductComment.builder().comment("k�t� bir �r�n").productId(6L).userId(4L).commentDate(LocalDate.now().minusDays(3)).build();
-        ProductComment pc9=ProductComment.builder().comment("�ok g�zel").productId(7L).userId(2L).commentDate(LocalDate.now().minusDays(266)).build();
-        ProductComment pc10=ProductComment.builder().comment("be�endim").productId(8L).userId(3L).commentDate(LocalDate.now().minusYears(1)).build();
+        ProductComment pc8=ProductComment.builder().comment("kotu bir urun").productId(6L).userId(4L).commentDate(LocalDate.now().minusDays(3)).build();
+        ProductComment pc9=ProductComment.builder().comment("cok guzel").productId(7L).userId(2L).commentDate(LocalDate.now().minusDays(266)).build();
+        ProductComment pc10=ProductComment.builder().comment("begendim").productId(8L).userId(3L).commentDate(LocalDate.now().minusYears(1)).build();
         productCommentService.saveAll(List.of(pc1,pc2,pc3,pc4,pc5,pc6,pc7,pc8,pc9,pc10));
 
     }

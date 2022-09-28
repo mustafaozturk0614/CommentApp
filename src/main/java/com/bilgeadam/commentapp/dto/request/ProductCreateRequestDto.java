@@ -16,5 +16,5 @@ public class ProductCreateRequestDto {
 
     private String name;
     private  double price;
-    private LocalDate expirationDate;
+    private String expirationDate;
 }

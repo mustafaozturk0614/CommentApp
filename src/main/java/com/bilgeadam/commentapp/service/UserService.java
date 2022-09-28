@@ -3,6 +3,8 @@ package com.bilgeadam.commentapp.service;
 import com.bilgeadam.commentapp.dto.request.UserCreateRequestDto;
 import com.bilgeadam.commentapp.dto.response.UserCreateResponseDto;
 import com.bilgeadam.commentapp.dto.response.UserFindAllResponseDto;
+import com.bilgeadam.commentapp.exception.CommentAppManagerException;
+import com.bilgeadam.commentapp.exception.ErrorType;
 import com.bilgeadam.commentapp.mapper.UserMapper;
 import com.bilgeadam.commentapp.repository.IUserRepository;
 import com.bilgeadam.commentapp.repository.entity.Product;
@@ -116,10 +118,11 @@ public class UserService {
 
     public UserCreateResponseDto saveWithRequestDto(UserCreateRequestDto dto) {
 
-        User user=UserMapper.INSTANCE.toUser(dto);
 
-        userRepository.save(user);
+      User user = UserMapper.INSTANCE.toUser(dto);
+      userRepository.save(user);
+      return UserMapper.INSTANCE.toUserCreateResponseDto(user);
 
-        return  UserMapper.INSTANCE.toUserCreateResponseDto(user);
+
     }
 }

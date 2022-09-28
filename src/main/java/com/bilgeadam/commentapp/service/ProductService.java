@@ -1,5 +1,6 @@
 package com.bilgeadam.commentapp.service;
 
+import com.bilgeadam.commentapp.dto.request.ProductCreateRequestDto;
 import com.bilgeadam.commentapp.dto.response.ProductCreateResponseDto;
 import com.bilgeadam.commentapp.mapper.ProductMapper;
 import com.bilgeadam.commentapp.repository.IProductRepository;
@@ -98,6 +99,13 @@ public List<Product> findAllOptionalByExpirationDateBetween(){
         productRepository.save(product);
 
         return ProductMapper.INSTANCE.toProductCreateResponseDto(product);
+
+    }
+
+    public ProductCreateResponseDto saveWithRequest(ProductCreateRequestDto dto) {
+                Product product=ProductMapper.INSTANCE.toProduct(dto);
+                productRepository.save(product);
+                return  ProductMapper.INSTANCE.toProductCreateResponseDto(product);
 
     }
 }

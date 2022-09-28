@@ -1,5 +1,6 @@
 package com.bilgeadam.commentapp.controller;
 
+import com.bilgeadam.commentapp.dto.request.ProductCreateRequestDto;
 import com.bilgeadam.commentapp.dto.response.ProductCreateResponseDto;
 import com.bilgeadam.commentapp.repository.IProductRepository;
 import com.bilgeadam.commentapp.repository.entity.Product;
@@ -44,6 +45,14 @@ public ResponseEntity<Product> save(String name, Double price, String expiration
             product=  Product.builder().name(name).price(price).build();}
 
         return  ResponseEntity.ok(productService.saveDto(product));
+
+    }
+
+    @GetMapping("/savewithrequest")
+    public ResponseEntity<ProductCreateResponseDto> saveWithrequest(ProductCreateRequestDto dto){
+
+
+        return  ResponseEntity.ok(productService.saveWithRequest(dto));
 
     }
 

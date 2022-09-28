@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 /*
@@ -33,6 +34,8 @@ public class User {
     private String telephone;
     @Column(length = 32)
     private String password;
+
+    private LocalDate createdDate;
     @ElementCollection
     List<Long> favProducts;
 
