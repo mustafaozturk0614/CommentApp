@@ -1,6 +1,7 @@
 package com.bilgeadam.commentapp.mvc;
 
 import com.bilgeadam.commentapp.dto.request.UserCreateRequestDto;
+import com.bilgeadam.commentapp.repository.entity.User;
 import com.bilgeadam.commentapp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,4 +25,16 @@ public class UserMvcController {
         modelAndView.addObject("user",dto);
         return modelAndView;
     }
+
+    @GetMapping("/getuser")
+    public  ModelAndView getById(Long id){
+        User user=userService.findById(id).get();
+        ModelAndView modelAndView=new ModelAndView();
+        modelAndView.addObject("user",user);
+        modelAndView.setViewName("info");
+        return modelAndView;
+
+    }
+
+
 }

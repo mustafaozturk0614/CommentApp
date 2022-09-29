@@ -36,8 +36,12 @@ public class LoginMvcController {
         Optional<User> user=userService.login(dto.getEmail(),dto.getPassword());
 
         if (user.isPresent()){
+
             if (user.get().getUserType().equals(EUserType.ADMIN)){
+                modelAndView.addObject("userlist",userService.findAll());
                 modelAndView.setViewName("admin");
+//               return admin(); //postmappingle admin metodunu çaðýrýyoruz
+
             }else {
                 modelAndView.setViewName("home");
             }
@@ -50,11 +54,13 @@ public class LoginMvcController {
 
     }
 
-
+    @PostMapping("/admin")
     public  ModelAndView  admin(){
+        ModelAndView modelAndView=new ModelAndView();
 
-
-
+        modelAndView.addObject("userlist",userService.findAll());
+        modelAndView.setViewName("admin");
+        return  modelAndView;
     }
 
 }
