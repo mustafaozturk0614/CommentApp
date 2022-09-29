@@ -2,6 +2,7 @@ package com.bilgeadam.commentapp.mvc;
 
 
 import com.bilgeadam.commentapp.dto.request.LoginRequesDto;
+import com.bilgeadam.commentapp.repository.entity.EUserType;
 import com.bilgeadam.commentapp.repository.entity.User;
 import com.bilgeadam.commentapp.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -35,8 +36,12 @@ public class LoginMvcController {
         Optional<User> user=userService.login(dto.getEmail(),dto.getPassword());
 
         if (user.isPresent()){
+            if (user.get().getUserType().equals(EUserType.ADMIN)){
+                modelAndView.setViewName("admin");
+            }else {
+                modelAndView.setViewName("home");
+            }
 
-            modelAndView.setViewName("home");
         }else {
             modelAndView.setViewName("redirect:login");
         }
@@ -45,5 +50,11 @@ public class LoginMvcController {
 
     }
 
+
+    public  ModelAndView  admin(){
+
+
+
+    }
 
 }
