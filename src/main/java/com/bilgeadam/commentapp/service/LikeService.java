@@ -30,7 +30,7 @@ public Like save(LikeCreateRequestDto like){
 
    if (userDb.isEmpty()){
 
-      throw  new CommentAppManagerException(ErrorType.USER_NOT_FOUND,"Kullanýcý Bulunamadý");
+      throw  new CommentAppManagerException(ErrorType.USER_NOT_FOUND,"Kullanici Bulunamadï¿½");
 
    }
    if (productDb.isEmpty()){

@@ -10,8 +10,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 /*
-* favProductlar ekleyelim bunlarý id bazýnda tutacaðýz
-* /* user ýd ve product ýd ile favaorulere urun ekleyen bir metot yazalým bunun da end pointini yazalým
+* favProductlar ekleyelim bunlarÄ± id bazÄ±nda tutacaÄŸÄ±z
+* /* user id ve product id ile favorilere urun ekleyen bir metot yazalim bunun da end pointini yazalim
 *
 * */
 @Entity
@@ -34,8 +34,9 @@ public class User {
     private String telephone;
     @Column(length = 32)
     private String password;
-
-    private LocalDate createdDate;
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
+    private EUserType userType=EUserType.USER;
     @ElementCollection
     List<Long> favProducts;
 

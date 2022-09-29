@@ -37,10 +37,10 @@ private  final UserService userService;
 
 
 @GetMapping("/save")
-public ResponseEntity<User> save(String name , String surName, String email, String telephone, String password, LocalDate date){
+public ResponseEntity<User> save(String name , String surName, String email, String telephone, String password){
     try {
         User user=userService.save(User.builder().name(name).surName(surName).
-                telephone(telephone).email(email).password(password).createdDate(date).build());
+                telephone(telephone).email(email).password(password).build());
         return ResponseEntity.ok(user);
     }catch (Exception e){
 

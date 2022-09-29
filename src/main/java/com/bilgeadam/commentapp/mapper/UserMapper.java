@@ -1,5 +1,6 @@
 package com.bilgeadam.commentapp.mapper;
 
+import com.bilgeadam.commentapp.dto.request.LoginRequesDto;
 import com.bilgeadam.commentapp.dto.request.UserCreateRequestDto;
 import com.bilgeadam.commentapp.dto.response.UserCreateResponseDto;
 import com.bilgeadam.commentapp.dto.response.UserFindAllResponseDto;
@@ -24,5 +25,5 @@ List<UserFindAllResponseDto> toUserFindAllResponseDto(final List<User> users);
 
 
 User toUser(final UserCreateRequestDto requestDto);
-
+    User toUserFromLogin(final LoginRequesDto dto);
 }

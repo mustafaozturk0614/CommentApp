@@ -54,9 +54,17 @@ public class UserService {
     }
 
     public Optional<User> login (String email,String password){
+      Optional<User> user=userRepository.findOptionalByEmailAndPassword(email,password);
 
-      return userRepository.findOptionalByEmailAndPassword(email,password);
-    }
+      if (user.isEmpty()){
+
+        System.out.println("Kullanıcı Bulunamadı");
+      return Optional.ofNullable(null);
+      }
+
+      return user;
+
+  }
     public Optional<User> loginNativeQuery (String email,String password){
 
         return userRepository.findOptionalByEmailAndPassword2(email,password);
