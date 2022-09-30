@@ -20,5 +20,5 @@ public class UserCreateRequestDto {
     private  String email;
     private String password;
     private  String telephone;
-    private LocalDate createdDate;
+
 }

@@ -1,5 +1,6 @@
 package com.bilgeadam.commentapp.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,5 +40,14 @@ public class User {
     private EUserType userType=EUserType.USER;
     @ElementCollection
     List<Long> favProducts;
+
+    @JsonIgnore
+    @OneToMany( mappedBy = "user")
+    private List<Like> likes;
+  @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<ProductComment> comments;
+
+
 
 }

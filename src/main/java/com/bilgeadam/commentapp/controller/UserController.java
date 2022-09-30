@@ -73,9 +73,7 @@ public ResponseEntity<User> save(String name , String surName, String email, Str
         UserCreateResponseDto user=userService.saveDto2(User.builder().name(name).surName(surName).
                 telephone(telephone).email(email).password(password).build());
 
-
         return ResponseEntity.ok(user);
-
     }
 
 @GetMapping ("/findAll")

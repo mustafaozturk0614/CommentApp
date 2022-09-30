@@ -37,12 +37,14 @@ public Like save(LikeCreateRequestDto like){
 
       throw  new CommentAppManagerException(ErrorType.PRODUCT_NOT_FOUND,"Urunu Bulamadik");
    }
-
    Like like1= LikeMapper.INSTANCE.toLike(like);
-   likeRepository.save(like1);
-   productDb.get().getLikes().add(like1.getId());
-   productService.save(productDb.get());
 
+   like1.setProduct(productDb.get());
+   like1.setUser(userDb.get());
+   likeRepository.save(like1);
+   productDb.get().getLikes().add(like1);
+   userDb.get().getLikes().add(like1);
+   productService.save(productDb.get());
    return  like1;
 
 

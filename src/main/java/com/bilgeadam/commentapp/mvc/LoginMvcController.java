@@ -21,6 +21,8 @@ public class LoginMvcController {
 
   private  final  UserService userService;
 
+  private final ProductMvcController productMvcController;
+
     @GetMapping("/login")
     public ModelAndView login(){
         ModelAndView modelAndView=new ModelAndView();
@@ -40,10 +42,12 @@ public class LoginMvcController {
             if (user.get().getUserType().equals(EUserType.ADMIN)){
                 modelAndView.addObject("userlist",userService.findAll());
                 modelAndView.setViewName("admin");
-//               return admin(); //postmappingle admin metodunu çaðýrýyoruz
+//               return admin(); //postmappingle admin metodunu ?a??r?yoruz
 
             }else {
-                modelAndView.setViewName("home");
+                modelAndView.addObject("userId",user.get().getId());
+                modelAndView.setViewName("redirect:/productmvc/getallproducts");
+//           return     productMvcController.getAllproducts(user.get());
             }
 
         }else {

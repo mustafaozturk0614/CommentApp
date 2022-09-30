@@ -1,5 +1,6 @@
 package com.bilgeadam.commentapp.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 @Table(name = "tbl_product")
 @Entity
@@ -24,7 +26,11 @@ public class Product {
     private String name;
     private  double price;
     private LocalDate expirationDate;
-    @ElementCollection
-    private List<Long> likes;
+    @JsonIgnore
+    @OneToMany(mappedBy = "product" )
+    private Set<Like> likes;
+    @JsonIgnore
+    @OneToMany(mappedBy = "product")
+    private List<ProductComment> comments;
 
 }
