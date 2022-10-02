@@ -30,7 +30,7 @@ private final ProductService productService;
 @GetMapping("/tolike")
 public ResponseEntity<Like> toLike(LikeCreateRequestDto dto){
 
-     return  ResponseEntity.ok(likeService.save(dto)) ;
+     return  ResponseEntity.ok(likeService.toLike(dto)) ;
 
 }
 

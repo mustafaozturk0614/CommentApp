@@ -6,45 +6,70 @@
     <!-- CSS only -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
+<h1 class="text-center text-info"> Admin Sayfası</h1>
 
-<h1 class="text-bg-info text-center "> Admin SAyfası </h1>
-<div >
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Ad</th>
-            <th scope="col">Soyad</th>
-            <th scope="col">Email</th>
-            <th scope="col">Telephone</th>
-            <th scope="col">Kullanıcı Türü</th>
-            <th scope="col">İşlemler</th>
-        </tr>
-        </thead>
-        <tbody>
+<div class="container" >
+    <div class="row d-flex">
+        <div class="col-md-3 col-12 d-flex" >
 
-            <tr th:each="user :${userlist}"  >
-                <th th:text="${user.id}" th:value="${user.id}" scope="row"></th>
-                <td th:text="${user.name}"></td>
-                <td th:text="${user.surName}"></td>
-                <td th:text="${user.email}"></td>
-                <td th:text="${user.telephone}"></td>
-                <td th:text="${user.userType}"></td>
-                <td>
-                    <a class="btn btn-success mx-1"  th:href="'/usermvc/getuser?id='+${user.id}"   ><i class="fa-solid fa-pen-to-square"></i></a>
-                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    Kullanicıları Listele
+                </button>
 
-                </td>
-            </tr>
+                <a type="button"  class="list-group-item list-group-item-action">Ürünleri Listele</a>
+
+            </div>
 
 
+        </div>
+
+        <div class="col-md-8   col-12 d-flex flex-column" >
+            <div class="d-flex justify-content-around">
+                <a type="button" href="/productmvc/createproduct" class="btn btn-warning mt-3 mb-5" > Yeni Ürün  Ekle  </a>
+                <a type="button" href="/register" class="btn btn-warning mt-3 mb-5" > Yeni Kullanıcı  Ekle  </a>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th class="text-center" scope="col">#</th>
+                    <th class="text-center" scope="col">Name</th>
+                    <th class="text-center" scope="col">Surname</th>
+                    <th class="text-center" scope="col">Email</th>
+                    <th class="text-center" scope="col">Telephone</th>
+                    <th class="text-center" scope="col">İşlemler</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user :${userlist}">
+                    <th class="text-center" th:text="${user.id}" scope="row"></th>
+                    <td class="text-center" th:text="${user.name}" ></td>
+                    <td class="text-center" th:text="${user.surName}" ></td>
+                    <td class="text-center" th:text="${user.email}" ></td>
+                    <td class="text-center" th:text="${user.telephone}"></td>
+                    <td class="text-center" >  <div class="d-flex justify-content-center">
+                        <a class="btn btn-success mx-1" th:href="@{/usermvc/getuser(id=${user.id})}" ><i class="fa-solid fa-pen-to-square"></i></a>
+                        <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
 
 
+                    </div>    </td>
 
-        </tbody>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
     </table>
 
 </div>

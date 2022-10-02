@@ -1,9 +1,6 @@
 package com.bilgeadam.commentapp.repository.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,7 +14,8 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "like_tbl")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

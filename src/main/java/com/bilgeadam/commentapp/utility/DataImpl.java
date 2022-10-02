@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.List;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class DataImpl {
 
@@ -24,7 +24,7 @@ public class DataImpl {
     private  final ProductCommentService productCommentService;
 //    private final LikeService likeService;
 
-    @PostConstruct
+//    @PostConstruct
     public  void loadData(){
         createUser();
 //        createproduct();

@@ -9,11 +9,11 @@ import com.bilgeadam.commentapp.repository.entity.Like;
 import com.bilgeadam.commentapp.repository.entity.Product;
 import com.bilgeadam.commentapp.repository.entity.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 @RequiredArgsConstructor
@@ -24,34 +24,60 @@ private  final ILikeRepository likeRepository;
 
    private final ProductService productService;
 
-public Like save(LikeCreateRequestDto like){
-   Optional<User> userDb=userService.findById(like.getUserId());
-   Optional<Product> productDb=productService.findById(like.getProductId());
+public Like save(LikeCreateRequestDto dto,User userDb,Product productDb){
 
-   if (userDb.isEmpty()){
+   Like like1= LikeMapper.INSTANCE.toLike(dto);
+   if( control(userDb.getLikes(),dto.getProductId())){
 
-      throw  new CommentAppManagerException(ErrorType.USER_NOT_FOUND,"Kullanici Bulunamad�");
-
+      like1.setProduct(productDb);
+      like1.setUser(userDb);
+      likeRepository.save(like1);
+      productDb.getLikes().add(like1);
+      userDb.getLikes().add(like1);
+      productService.save(productDb);
+      return  like1;
    }
-   if (productDb.isEmpty()){
-
-      throw  new CommentAppManagerException(ErrorType.PRODUCT_NOT_FOUND,"Urunu Bulamadik");
+   else {
+      throw  new CommentAppManagerException(ErrorType.LIKE_NOT_CREATED,"Daha Önce Like edilmiştir");
    }
-   Like like1= LikeMapper.INSTANCE.toLike(like);
 
-   like1.setProduct(productDb.get());
-   like1.setUser(userDb.get());
-   likeRepository.save(like1);
-   productDb.get().getLikes().add(like1);
-   userDb.get().getLikes().add(like1);
-   productService.save(productDb.get());
-   return  like1;
 
 
 }
 
+   public Like toLike(LikeCreateRequestDto like){
+      Optional<User> userDb=userService.findById(like.getUserId());
+      Optional<Product> productDb=productService.findById(like.getProductId());
+
+      if (userDb.isEmpty()){
+
+         throw  new CommentAppManagerException(ErrorType.USER_NOT_FOUND,"Kullanici Bulunamad�");
+
+      }
+      if (productDb.isEmpty()){
+
+         throw  new CommentAppManagerException(ErrorType.PRODUCT_NOT_FOUND,"Urunu Bulamadik");
+      }
+
+      return  save(like, userDb.get(),productDb.get());
 
 
+   }
+
+public boolean control(List<Like>likes,Long productId){
+   AtomicBoolean control= new AtomicBoolean(true);
+
+   likes.stream().forEach(x->{ if (x.getProduct().getId()==productId){
+   control.set(false);
+   }
+   });
+ return control.get();
+}
+
+
+   public void deleteById(Long id) {
+   likeRepository.deleteById(id);
+   }
 }
 
 

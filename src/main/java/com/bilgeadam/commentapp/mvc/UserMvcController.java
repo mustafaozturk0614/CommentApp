@@ -1,6 +1,7 @@
 package com.bilgeadam.commentapp.mvc;
 
 import com.bilgeadam.commentapp.dto.request.UserCreateRequestDto;
+import com.bilgeadam.commentapp.repository.entity.Like;
 import com.bilgeadam.commentapp.repository.entity.Product;
 import com.bilgeadam.commentapp.repository.entity.User;
 import com.bilgeadam.commentapp.service.ProductService;
@@ -9,12 +10,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/usermvc")
 public class UserMvcController {
@@ -51,5 +54,33 @@ public class UserMvcController {
 
     }
 
+    @GetMapping("/addfav")
+    public ModelAndView addFav(Long userId, Long productId) {
+        Optional<User> user= userService.findById(userId);
 
+        ModelAndView modelAndView=new ModelAndView();
+
+
+            user.get().getFavProducts().add(productId);
+        userService.save(user.get());
+        modelAndView.addObject("userId",userId);
+        modelAndView.setViewName("redirect:/productmvc/getallproducts");
+        return  modelAndView;
+
+    }
+    @GetMapping("/deletefav")
+    public ModelAndView deleteFav(Long userId, Long productId) {
+        Optional<User> user= userService.findById(userId);
+
+        ModelAndView modelAndView=new ModelAndView();
+
+
+        user.get().getFavProducts().remove(productId);
+        userService.save(user.get());
+
+        modelAndView.addObject("userId",userId);
+        modelAndView.setViewName("redirect:/productmvc/getallproducts");
+        return  modelAndView;
+
+    }
 }
