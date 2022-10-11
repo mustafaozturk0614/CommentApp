@@ -1,6 +1,7 @@
 package com.bilgeadam.commentapp.dto.request;
 
 
+import com.bilgeadam.commentapp.repository.entity.EUserType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,5 +21,6 @@ public class UserCreateRequestDto {
     private  String email;
     private String password;
     private  String telephone;
+    private EUserType userType;
 
 }

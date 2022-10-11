@@ -1,7 +1,6 @@
 package com.bilgeadam.commentapp.mvc;
 
 import com.bilgeadam.commentapp.dto.request.ProductCreateRequestDto;
-import com.bilgeadam.commentapp.dto.request.UserCreateRequestDto;
 import com.bilgeadam.commentapp.repository.entity.Like;
 import com.bilgeadam.commentapp.repository.entity.Product;
 import com.bilgeadam.commentapp.repository.entity.User;
@@ -58,5 +57,19 @@ private final UserService userService;
     }
 
 
+    @GetMapping("/getallproducts2")
+    public ModelAndView getAllproducts2(Long userId){
 
+        User user=userService.findById(userId).get();
+        List<Long> productid=user.getLikes().stream().map(x->x.getProduct().getId()).collect(Collectors.toList());
+        Like like=new Like();
+        ModelAndView modelAndView=new ModelAndView();
+        List<Product> products= productService.findAll();
+        modelAndView.addObject("products",products);
+        modelAndView.addObject("user",user);
+        modelAndView.addObject("pid",productid);
+        modelAndView.addObject("like",like);
+        modelAndView.setViewName("home3");
+        return  modelAndView;
+    }
 }

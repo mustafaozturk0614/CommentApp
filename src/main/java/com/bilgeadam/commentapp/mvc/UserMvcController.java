@@ -1,13 +1,11 @@
 package com.bilgeadam.commentapp.mvc;
 
 import com.bilgeadam.commentapp.dto.request.UserCreateRequestDto;
-import com.bilgeadam.commentapp.repository.entity.Like;
 import com.bilgeadam.commentapp.repository.entity.Product;
 import com.bilgeadam.commentapp.repository.entity.User;
 import com.bilgeadam.commentapp.service.ProductService;
 import com.bilgeadam.commentapp.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
